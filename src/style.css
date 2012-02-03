@@ -1,0 +1,100 @@
+#footer{
+	border-radius:20px;
+	color:#555;
+	font-size:11px;
+	text-align:center;
+	padding:5px;
+	background:rgba(0, 127, 255, 0.4)
+}
+
+#header{
+	border-radius:20px;
+	color:#555;
+	font-size:18px;
+	height:60px;
+	padding:5px 30px;
+	text-align:right;
+	background:rgba(0, 127, 255, 0.4)
+}
+
+#content{
+	border-radius:20px;
+	min-height:300px;
+	margin:30px 0;
+	padding:10px 20px;
+	background:rgba(0, 127, 255, 0.4)
+}
+
+#page{
+	width:960px;
+	margin:auto
+}
+
+body{
+	font-family:"DejaVu Sans"
+}
+
+form>p{
+	width:250px
+}
+
+h1{
+	color:blue;
+	font-size:30px;
+	padding-left:30px
+}
+
+input[type=submit]{
+	cursor:pointer;
+	float:right;
+	border:0;
+	border-radius:8px;
+	color:#DDD;
+	font-size:18px;
+	margin:10px 0;
+	padding:4px 10px;
+	background:rgba(0,0,255,0.6)
+}
+
+input[type=submit]:hover{
+	background:blue
+}
+
+input[type=text],
+input[type=password]{
+	float:right;
+	margin-top:-4px;
+	padding:3px
+}
+
+select{
+	width:160px;
+	float:right;
+	margin:-4px 3px 0 0;
+	padding:3px
+}
+
+.clear{
+	clear:both
+}
+
+textarea{
+	min-height:400px;
+	width:904px;
+	max-width:904px;
+	padding:3px
+}
+
+.login{
+	width:210px;
+	margin:
+	44px auto
+}
+
+.login>p{
+	width:210px
+}
+
+p.tcontent{
+	margin-bottom:0
+}
