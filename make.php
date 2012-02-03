@@ -33,7 +33,19 @@ class Compiler {
 	
 	private function minPHP($file) {
 		$t = file_get_contents($file);
-		$t = preg_replace('/\n|\r/','',$t);
+		$t = preg_replace('/\n|\r|\t/','',$t);
+		
+		return $t;
+	}
+	
+	private function minCSS($file) {
+		$t = file_get_contents($file);
+		$t = preg_replace('/\n|\r|\t/','',$t);
+		$t = preg_replace('/: /',':',$t);
+		$t = preg_replace('/{ /','{',$t);
+		$t = preg_replace('/} /','}',$t);
+		$t = preg_replace('/ +/',' ',$t);
+		$t = preg_replace('/;}/','}',$t);
 		
 		return $t;
 	}
@@ -46,6 +58,7 @@ class Compiler {
 		$ext = substr($file, -3);
 		switch($ext) {
 			case "php": return $this->minPHPEscape($file);
+			case "css": return $this->minCSS($file);
 			default: return $this->minOther($file);
 		}
 	}
