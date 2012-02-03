@@ -15,3 +15,4 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /make.php to "compile" sources.
+don't forget to update your DB settings in /make.php.
