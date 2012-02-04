@@ -145,6 +145,7 @@ $c->run();
 unlink("bin/header.php");
 unlink("bin/footer.php");
 unlink("bin/.htaccess");
+unlink("bin/helper.php");
 unlink("bin/style.css");
 unlink("bin/admin.php");
 unlink("bin/tpl/404.php");

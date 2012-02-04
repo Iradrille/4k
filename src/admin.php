@@ -1,41 +1,11 @@
 <?php 
+include "helper.php";
 function getTitle(){
 	return "Admin Panel";
 }
-
-function r(){
-	header('location:admin.php');exit();
-}
-
-function absPath(){
-	$a=$_SERVER["PHP_SELF"];
-	return substr($a,0,strlen($a)-10);
-}
-
-function i($l,$n,$v){
-	echo "<p>$l<input type='text' name='$n' value='$v'/></p>";
-}
-
-function q($q){
-	return mysql_query($q);
-}
-
-function u($x){
-	return (isset($x["u"])&&strlen($x["u"]))?$x["u"]:str_replace(' ','-',$x["t"]);
-}
-
-function e($s){
-	return str_replace('\'','\'\'',$s);
-}
-
-function f($q){
-	return mysql_fetch_array($q);
-}
-
 session_start();
 mysql_connect(DB_HOST,DB_USER,DB_PASS);
 mysql_select_db(DB_BASE);
-$w=$_POST;
 $x=$_GET;
 $p=array();
 $d=dir('tpl');
@@ -63,7 +33,7 @@ if(isset($_SESSION["a"])){
 	if(isset($x["e"]))
 		$d=f(q("select t,n,p,c,i from p where i=".$x["e"])); /* all todo*/
 	
-	include 'header.php'; 
+	showHeader();
 	$q=q("select * from p");
 	while($r=f($q))
 		echo "<p><a href='".absPath()."/$r[3]/'>$r[4]</a> <a href='?e=$r[0]'>edit</a> <a href='?d=$r[0]'>del</a></p>"; 
@@ -89,11 +59,11 @@ if(isset($_SESSION["a"])){
 }
 else{
 	if(isset($x["i"])){
-		if(mysql_fetch_array(mysql_query("select * from u where u.n='".$x["i"]."' and u.p='".md5($x["p"])."'")))
+		if(f(q("select * from u where u.n='".$x["i"]."' and u.p='".md5($x["p"])."'")))
 			$_SESSION["a"]=1;
 		r();
 	}
-	include 'header.php'; 
+	showHeader();
 ?>
 	<form class="login" href="">
 		<?php i("ID","i",""); ?>
@@ -103,4 +73,4 @@ else{
 	</form>
 <?php 
 }
-include 'footer.php';
+showFooter();
