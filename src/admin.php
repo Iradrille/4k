@@ -11,9 +11,9 @@ $p=array();
 $d=dir('tpl');
 while($e=$d->read())
 	if($e!="."&&$e!="..")
-		q("insert into t values(NULL,'".$e."')");
+		q("insert into t values(NULL,'$e')");
 $d=array();
-$d[0]=$d[1]=$d[2]=$d[3]=$d[4]="";
+$d[]=$d[]=$d[]=$d[]=$d[]="";
 $q=q("select * from t");
 while($r=f($q))
 	$p[]=$r;
@@ -31,27 +31,28 @@ if(isset($_SESSION["a"])){
 		r();
 	}
 	if(isset($x["e"]))
-		$d=f(q("select t,n,p,c,i from p where i=".$x["e"])); /* all todo*/
+		$d=f(q("select * from p where i=".$x["e"]));
 	
 	showHeader();
 	$q=q("select * from p");
 	while($r=f($q))
 		echo "<p><a href='".absPath()."/$r[3]/'>$r[4]</a> <a href='?e=$r[0]'>edit</a> <a href='?d=$r[0]'>del</a></p>"; 
 ?>
-		<form href="">
+		<form>
 <?php 
-			echo ($d[0]!=""?"<input type='hidden' name='v' value='$d[4]'/>":"");
-			i("Titre*","t",$d[0]);
-			i("Url","u",$d[1]); 
+			echo ($d[0]!=""?"<input type='hidden' name='v' value='$d[0]'/>":"");
+			i("Titre*","t",$d[4]);
+			i("Url","u",$d[3]); 
 ?>
 			<p>Template*
 				<select name="p">
-					<?php foreach($p as $t) ?>
+					<?php foreach($p as $t){ ?>
 						<option value="<?php echo $t[0].'" '.($t[0]==$d[2]?"selected":""); ?>><?php echo $t[1]; ?></option>
+					<?php } ?>
 				</select>
 			</p>
 			<p class="tContent">Contenu*</p>
-			<textarea name="c"><?php echo $d[3]; ?></textarea>
+			<textarea name="c"><?php echo $d[1]; ?></textarea>
 			<input type="submit" value="Valider"/>
 			<div class="clear"></div>
 			</form>
@@ -65,7 +66,7 @@ else{
 	}
 	showHeader();
 ?>
-	<form class="login" href="">
+	<form class="login">
 		<?php i("ID","i",""); ?>
 		<p>Pwd<input type="password" name="p"/></p>
 		<input type="submit" value="Valider"/>
