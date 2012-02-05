@@ -156,3 +156,5 @@ mysql_connect("127.0.0.1","root","");
 mysql_select_db("4k");
 mysql_query("drop table u, p, t");
 mysql_close();
+session_start();
+session_destroy();

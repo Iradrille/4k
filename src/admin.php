@@ -1,5 +1,6 @@
 <?php 
 include "helper.php";
+$s="select * from";
 function getTitle(){
 	return "Admin Panel";
 }
@@ -14,7 +15,7 @@ while($e=$d->read())
 		q("insert into t values(NULL,'$e')");
 $d=array();
 $d[]=$d[]=$d[]=$d[]=$d[]="";
-$q=q("select * from t");
+$q=q("$s t");
 while($r=f($q))
 	$p[]=$r;
 if(isset($_SESSION["a"])){
@@ -31,10 +32,10 @@ if(isset($_SESSION["a"])){
 		r();
 	}
 	if(isset($x["e"]))
-		$d=f(q("select * from p where i=".$x["e"]));
+		$d=f(q("$s p where i=".$x["e"]));
 	
 	showHeader();
-	$q=q("select * from p");
+	$q=q("$s p");
 	while($r=f($q))
 		echo "<p><a href='".absPath()."/$r[3]/'>$r[4]</a> <a href='?e=$r[0]'>edit</a> <a href='?d=$r[0]'>del</a></p>"; 
 ?>
@@ -60,7 +61,7 @@ if(isset($_SESSION["a"])){
 }
 else{
 	if(isset($x["i"])){
-		if(f(q("select * from u where u.n='".$x["i"]."' and u.p='".md5($x["p"])."'")))
+		if(f(q("$s u where u.n='".$x["i"]."' and u.p='".md5($x["p"])."'")))
 			$_SESSION["a"]=1;
 		r();
 	}

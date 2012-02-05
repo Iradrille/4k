@@ -29,7 +29,7 @@ function f($q){
 }
 
 function getContent(){
-	return $_SESSION["c"];
+	return $_SESSION[1];
 }
 
 function showHeader(){
