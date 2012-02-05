@@ -87,15 +87,15 @@ textarea{
 	padding:3px
 }
 
-.login{
+#login{
 	width:210px;
 	margin:44px auto
 }
 
-.login>p{
+#login>p{
 	width:210px
 }
 
-p.tcontent{
+p.t{
 	margin-bottom:0
 }

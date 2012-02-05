@@ -1,7 +1,7 @@
-			</section>
-			<section id='footer'>
+			</div>
+			<div id="footer">
 				<p>Powered by 4k - Ira industry !</p>
-			</section>
-		</section>
+			</div>
+		</div>
 	</body>
 </html>

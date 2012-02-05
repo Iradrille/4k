@@ -51,7 +51,7 @@ if(isset($_SESSION["a"])){
 					<?php } ?>
 				</select>
 			</p>
-			<p class="tContent">Contenu*</p>
+			<p class="t">Contenu*</p>
 			<textarea name="c"><?php echo $d[1]; ?></textarea>
 			<input type="submit" value="Valider"/>
 			<div class="clear"></div>
@@ -66,7 +66,7 @@ else{
 	}
 	showHeader();
 ?>
-	<form class="login">
+	<form id="login">
 		<?php i("ID","i",""); ?>
 		<p>Pwd<input type="password" name="p"/></p>
 		<input type="submit" value="Valider"/>
