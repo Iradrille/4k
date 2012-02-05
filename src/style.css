@@ -1,28 +1,30 @@
-#footer{
+#footer,
+#header,
+#content{
+	background:#99ccff;
 	border-radius:20px;
+}
+
+#footer{
 	color:#555;
 	font-size:11px;
 	text-align:center;
 	padding:5px;
-	background:rgba(0, 127, 255, 0.4)
 }
 
 #header{
-	border-radius:20px;
+	
 	color:#555;
 	font-size:18px;
 	height:60px;
 	padding:5px 30px;
 	text-align:right;
-	background:rgba(0, 127, 255, 0.4)
 }
 
 #content{
-	border-radius:20px;
 	min-height:300px;
 	margin:30px 0;
 	padding:10px 20px;
-	background:rgba(0, 127, 255, 0.4)
 }
 
 #page{
@@ -53,7 +55,7 @@ input[type=submit]{
 	font-size:18px;
 	margin:10px 0;
 	padding:4px 10px;
-	background:rgba(0,0,255,0.6)
+	background:#6666ff
 }
 
 input[type=submit]:hover{
@@ -80,8 +82,8 @@ select{
 
 textarea{
 	min-height:400px;
-	width:904px;
-	max-width:904px;
+	width:912px;
+	max-width:912px;
 	padding:3px
 }
 
