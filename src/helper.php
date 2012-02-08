@@ -24,6 +24,10 @@ function e($s){
 	return str_replace('\'','\'\'',$s);
 }
 
+function s($s){
+	return mysql_real_escape_string($s);
+}
+
 function f($q){
 	return mysql_fetch_array($q);
 }

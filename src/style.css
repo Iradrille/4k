@@ -75,7 +75,7 @@ select{
 	padding:3px
 }
 
-.clear{
+.a{
 	clear:both
 }
 
@@ -95,6 +95,6 @@ textarea{
 	width:210px
 }
 
-p.t{
+#t{
 	margin-bottom:0
 }

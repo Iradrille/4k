@@ -4,6 +4,9 @@ $s="select * from";
 function getTitle(){
 	return "Admin Panel";
 }
+function a(){
+	echo '<input type="submit" value="Valider"/><div class="a"></div></form>';
+}
 session_start();
 mysql_connect(DB_HOST,DB_USER,DB_PASS);
 mysql_select_db(DB_BASE);
@@ -47,21 +50,18 @@ if(isset($_SESSION["a"])){
 ?>
 			<p>Template*
 				<select name="p">
-					<?php foreach($p as $t){ ?>
-						<option value="<?php echo $t[0].'" '.($t[0]==$d[2]?"selected":""); ?>><?php echo $t[1]; ?></option>
-					<?php } ?>
+					<?php foreach($p as $t)
+						echo '<option value="'.$t[0].'" '.($t[0]==$d[2]?"selected>":">").$t[1]."</option>"; 
+					?>
 				</select>
 			</p>
-			<p class="t">Contenu*</p>
-			<textarea name="c"><?php echo $d[1]; ?></textarea>
-			<input type="submit" value="Valider"/>
-			<div class="clear"></div>
-			</form>
-<?php 
+			<p id="t">Contenu*</p>
+			<textarea name="c"><?php echo $d[1]."</textarea>";
+			a();
 }
 else{
 	if(isset($x["i"])){
-		if(f(q("$s u where u.n='".$x["i"]."' and u.p='".md5($x["p"])."'")))
+		if(f(q("$s u where n='".s($x["i"])."' and p='".md5($x["p"])."'")))
 			$_SESSION["a"]=1;
 		r();
 	}
@@ -70,9 +70,7 @@ else{
 	<form id="login">
 		<?php i("ID","i",""); ?>
 		<p>Pwd<input type="password" name="p"/></p>
-		<input type="submit" value="Valider"/>
-		<div class="clear"></div>
-	</form>
 <?php 
+	a();
 }
 showFooter();

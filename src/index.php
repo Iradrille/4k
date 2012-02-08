@@ -29,18 +29,18 @@ q("$c t(i$n,f$v,$p(i), unique key f(f$e");
 q("$i t values(1,'post.php')");
 q("$c u(i$n,n$t,p$t,$p(i$e");
 q("$i u values(1,'admin','21232f297a57a5a743894a0e4a801fc3')");
-header('location:hi');
+header("location:hi/");
 goto g;
 s:
 include "helper.php";
 g:
 session_start();
-$p=$_GET["p"];
+$p=s($_GET["p"]);
 $q=q("select * from p,t where p.p=t.i and p.n='$p'");
 $c=array();
 if($f=f($q))
 	$c[]=$f;
 if(!$c[0])
-	l(array("404.php"),array("c"=>"Page $p non trouvée","t"=>"Oups..."));
+	l(array("404.php"),array(1=>"Page $p non trouvée",4=>"Oups..."));
 $c=$c[0];
 l(array($c[6],"base.php"),$c);
