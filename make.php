@@ -6,6 +6,7 @@ class Compiler {
 	private $src, $bin, $baseFile, $htaccess;
 	private $folders = "", $files = "";
 	private $unpacker;
+	private $host, $user, $pass, $base;
 
 	
 	public function __construct($src, $bin, $baseFile, $defHost="127.0.0.1", $defUser="root", $defPass="", $defBase="4k") {
@@ -17,6 +18,10 @@ class Compiler {
 							')$e=$w.$w[0];$z.=$e;if($j++)$t[]=$w.$e[0];$w=$e;$r&=(1<<$l)-1;if(++$s>>$b)$' .
 							'b++;}}$h="DB_HOST";$u="DB_USER";$p="DB_PASS";$b="DB_BASE";eval($z);';
 		$this->unpacker = str_replace(array('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_BASE'), array($defHost, $defUser, $defPass, $defBase), $this->unpacker);
+		$this->host = $defHost;
+		$this->user = $defUser;
+		$this->pass = $defPass;
+		$this->base = $defBase;
 	}
 	
 	public function run() {
@@ -88,6 +93,35 @@ class Compiler {
 		closedir($dir);
 	}
 	
+	public function clean() {
+		mysql_connect($this->host,$this->user,$this->pass);
+		mysql_select_db($this->base);
+		mysql_query("drop table u, p, t");
+		mysql_close();
+		session_start();
+		session_destroy();
+	
+		$this->_clean($this->bin);
+	}
+	
+	private function _clean($rep) {
+		$dir = opendir($rep); 
+		while($file = readdir($dir)) {
+			if($file != '.' && $file != '..') {
+				$f = "$rep/$file";
+				if(is_file($f)) {
+					unlink($f);
+				}
+				else {
+					$this->_clean($f);
+					rmdir($f);
+				}
+			}
+		}
+
+		closedir($dir);
+	}
+	
 	private function generateLoad() {
 		$content = substr($this->minPHP("$this->src/$this->baseFile"), 6);
 		$content = str_replace('/* ADD FILES HERE */', $this->folders.$this->files, $content);
@@ -139,22 +173,7 @@ class Compiler {
 };
 
 $c = new Compiler("src", "bin", "index.php");
+$c->clean();
 $c->run();
 
-// Clean not proper, but works for now.
-unlink("bin/header.php");
-unlink("bin/footer.php");
-unlink("bin/.htaccess");
-unlink("bin/helper.php");
-unlink("bin/style.css");
-unlink("bin/admin.php");
-unlink("bin/tpl/404.php");
-unlink("bin/tpl/post.php");
-rmdir("bin/tpl");
-
-mysql_connect("127.0.0.1","root","");
-mysql_select_db("4k");
-mysql_query("drop table u, p, t");
-mysql_close();
-session_start();
-session_destroy();
+?>
